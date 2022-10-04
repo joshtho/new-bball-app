@@ -36,7 +36,7 @@ function NavBar({search, setSearch, setPlayer}) {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" onClick={handleSubmit}>Search</Button>
           </Form>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function PlayerPage({player}) {
 
+function PlayerPage({player}) {
+const [hide, setHide] = useState(true)
+const [stats, setStats] = useState({})
     function handleClick(playerId) {
-    console.log("im clicked", playerId)
+        fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2021&player_ids[]=${playerId}`)
+    .then(r => r.json())
+    .then(data => {
+        console.log(data.data[0])
+        setStats(data.data[0])
+        setHide(false)
+    })
 }
 console.log(player)
 
@@ -22,7 +30,14 @@ return (
             <br />
             {player.team ? player.team.name : "Loading..."}
             </Card.Text>
-            <Button variant="primary" onClick={() => handleClick(player.id)}>Stats</Button>
+            {
+                hide ? <Button variant="primary" onClick={() => handleClick(player.id)}>Stats</Button>
+                : <Card.Text>
+                {stats ? stats.ast : "Loading..."}
+                <br />
+                {player.team ? player.team.name : "Loading..."}
+                </Card.Text>
+            }
           </Card.Body>
         </Card>)) : <h1>Loading...</h1>
 
