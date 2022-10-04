@@ -6,18 +6,21 @@ import Card from 'react-bootstrap/Card';
 function PlayerPage({player}) {
 const [hide, setHide] = useState(true)
 const [stats, setStats] = useState({})
-    function handleClick(playerId) {
-        fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2021&player_ids[]=${playerId}`)
+
+useEffect(() => {
+    fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2021&player_ids[]=${player.id}`)
     .then(r => r.json())
-    .then(data => {
-        console.log(data.data[0])
-        setStats(data.data[0])
+    .then(data => console.log(data.data[0]))
+
+},[])
+
+    function handleClick(playerId) {
+
         setHide(false)
-    })
 }
 console.log(player)
-
-  
+const {pts, reb, ast, stl, blk, ft_pct, fg_pct, fg3_pct, fg3m} = stats
+const min = parseInt(stats.min)
 return (
     <>
     {player.data ? player.data.map(player => (
@@ -31,11 +34,19 @@ return (
             {player.team ? player.team.name : "Loading..."}
             </Card.Text>
             {
-                hide ? <Button variant="primary" onClick={() => handleClick(player.id)}>Stats</Button>
+                hide ? <Button variant="primary" onClick={handleClick}>Stats</Button>
                 : <Card.Text>
-                {stats ? stats.ast : "Loading..."}
-                <br />
-                {player.team ? player.team.name : "Loading..."}
+                {stats ? 
+                `Average min: ${min}`
+                `Points: ${pts}`
+                `Rebounds: ${reb}`
+                `Assists: ${ast}`
+                `Steals: ${stl}`
+                `Blocks: ${blk}`
+                `FT%: ${ft_pct}`
+                `3p%: ${fg3_pct}`
+                `3pm: ${fg3m}`
+                 : "Loading..."}
                 </Card.Text>
             }
           </Card.Body>
