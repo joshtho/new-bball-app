@@ -3,10 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
-function PlayerPage({players, stats}) {
+function PlayerPage({player}) {
 //const [hide, setHide] = useState(true)
 
 
+    
 
 // function handleClick(id) { 
 //             fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2021&player_ids[]=${id}`)
@@ -21,7 +22,7 @@ function PlayerPage({players, stats}) {
 
 //const {pts, reb, ast, min, stl, blk, ft_pct, fg_pct, fg3_pct, fg3m} = stats
 // const min = parseInt(stats.min)
-console.log(players)
+
 return (
     <>
     {

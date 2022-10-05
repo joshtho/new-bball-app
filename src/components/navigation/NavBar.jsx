@@ -16,9 +16,6 @@ function NavBar({search, setSearch, setPlayer, setStats}) {
     .then(r => r.json())
     .then(info => {
       setPlayer(info.data)
-      fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2021&player_ids[]=${info.data[0].id}`)
-      .then(r => r.json())
-      .then(info => setStats(info.data[0]))
     })
     navigate('players')
   }

@@ -11,8 +11,7 @@ import PlayerList from './components/players/PlayerList';
 function App() {
   const [search, setSearch] = useState('')
   const [players, setPlayer] = useState([])
-  const [stats, setStats] = useState({})
-
+  
   
 
   return (
@@ -22,17 +21,17 @@ function App() {
       search={search} 
       setSearch={setSearch} 
       setPlayer={setPlayer} 
-      setStats={setStats}
+
       />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route 
           path='/players' 
-          element={<PlayerList players={players} stats={stats} />} 
+          element={<PlayerList players={players} />} 
           >
             <Route 
             path='/players/:id' 
-            element={<PlayerPage players={players} stats={stats} />} 
+            element={<PlayerPage />} 
             />
           </Route>
         </Routes>
