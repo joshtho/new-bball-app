@@ -7,13 +7,16 @@ function PlayerList({players}) {
     return (
         
         <Accordion>
-        {players ? 
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>{players.name}</Accordion.Header>
-            <Accordion.Body>
-              {<PlayerPage />}
-            </Accordion.Body>
-          </Accordion.Item> : <h1>Loading... </h1>}
+        {players ? players.map((player, index) => (
+            <Accordion.Item eventKey={`${index}`} key={player.id}>
+              <Accordion.Header>{player.first_name + " " + player.last_name}</Accordion.Header>
+              <Accordion.Body>
+                {<PlayerPage />}
+              </Accordion.Body>
+            </Accordion.Item> 
+
+        ))
+        : <h1>Loading... </h1>}
         
           </Accordion>
         
