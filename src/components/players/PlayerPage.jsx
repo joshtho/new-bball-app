@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 
 
 function PlayerPage({players, stats}) {
-const [hide, setHide] = useState(true)
+//const [hide, setHide] = useState(true)
 
 
 
@@ -19,42 +19,57 @@ const [hide, setHide] = useState(true)
 
 // }
 
-// const {pts, reb, ast, stl, blk, ft_pct, fg_pct, fg3_pct, fg3m} = stats
+//const {pts, reb, ast, min, stl, blk, ft_pct, fg_pct, fg3_pct, fg3m} = stats
 // const min = parseInt(stats.min)
-
+console.log(players)
 return (
     <>
-    {players ? players.map(player => (
-         <Card key={player.id}>
-          <Card.Header>{player.position}</Card.Header>
-          <Card.Body>
-            <Card.Title>{player.first_name + " " + player.last_name}</Card.Title>
-            <Card.Text>
-            {player.team ? player.team.city : "Loading..."}
-            <br />
-            {player.team ? player.team.name : "Loading..."}
-            </Card.Text>
-            {
-                hide ? 
-                <Button variant="primary" onClick={() => setHide(false)}>Stats</Button>
-                : 
-                <Card.Text>
-                    {console.log(stats)}
-                { stats ? 
-                <div>
-                    Points: {stats.pts}
-                    `Rebounds: ${stats.reb}`
-                    `Assists: ${stats.ast}`
-                    
-                </div>
-                :
-                "Loading..."
-                }
-                </Card.Text>
-            }
-          </Card.Body>
-        </Card>)) : <h1>Loading...</h1>
-
+    {
+    // players ? players.map(player => (
+    //      <Card key={player.id}>
+    //       <Card.Header>{player.position}</Card.Header>
+    //       <Card.Body>
+    //         <Card.Title>{player.first_name + " " + player.last_name}</Card.Title>
+    //         <Card.Text>
+    //         {player.team ? player.team.city : "Loading..."}
+    //         <br />
+    //         {player.team ? player.team.name : "Loading..."}
+    //         </Card.Text>
+    //         {
+    //             hide ? 
+    //             <Button variant="primary" onClick={() => setHide(false)}>2021 Stats</Button>
+    //             : 
+    //             <>
+    //             { stats ? 
+    //             <Card.Text>
+    //                 Points: {pts}
+    //                 <br/>
+    //                 Rebounds: {reb}
+    //                 <br/>
+    //                 Assists: {ast}
+    //                 <br/>
+    //                 Minutes: {min}
+    //                 <br/>
+    //                 Steals: {stl}
+    //                 <br/>
+    //                 Blocks: {blk}
+    //                 <br/>
+    //                 FG%: {fg_pct}
+    //                 <br/>
+    //                 FT%: {ft_pct}
+    //                 <br/>
+    //                 3P%: {fg3_pct}
+    //                 <br/>
+    //                 3PM: {fg3m}
+    //             </Card.Text>
+    //             :
+    //             "Loading..."
+    //             }
+    //             </>
+    //         }
+    //       </Card.Body>
+    //     </Card>)) : <h1>Loading...</h1>
+        <h1>Im the Player Page</h1>
     }
 
     
