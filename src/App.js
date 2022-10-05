@@ -9,17 +9,23 @@ import PlayerPage from './components/players/PlayerPage';
 
 function App() {
   const [search, setSearch] = useState('')
-  const [player, setPlayer] = useState([])
+  const [players, setPlayer] = useState([])
+  const [stats, setStats] = useState({})
 
   
 
   return (
     <div className="App">
       <Router>
-      <NavBar search={search} setSearch={setSearch} setPlayer={setPlayer} />
+      <NavBar 
+      search={search} 
+      setSearch={setSearch} 
+      setPlayer={setPlayer} 
+      setStats={setStats}
+      />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/players' element={<PlayerPage player={player} />} />
+          <Route path='/players' element={<PlayerPage players={players} stats={stats} />} />
         </Routes>
       </Router>
     </div>

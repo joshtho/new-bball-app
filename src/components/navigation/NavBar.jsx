@@ -7,14 +7,19 @@ import {Link, useNavigate} from "react-router-dom"
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 
-function NavBar({search, setSearch, setPlayer}) {
+function NavBar({search, setSearch, setPlayer, setStats}) {
   const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault()
     fetch(`https://www.balldontlie.io/api/v1/players?search=${search}&per_page=100`)
     .then(r => r.json())
-    .then(info => setPlayer(info))
+    .then(info => {
+      setPlayer(info.data)
+      fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2021&player_ids[]=${info.data[0].id}`)
+      .then(r => r.json())
+      .then(info => setStats(info.data[0]))
+    })
     navigate('players')
   }
   // while (info.meta.total_pages >== 0) {
