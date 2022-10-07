@@ -7,7 +7,7 @@ import {Link, useNavigate} from "react-router-dom"
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 
-function NavBar({search, setSearch, setPlayer, setStats}) {
+function NavBar({search, setSearch, setPlayer}) {
   const navigate = useNavigate()
 
   function handleSubmit(e) {
@@ -19,6 +19,9 @@ function NavBar({search, setSearch, setPlayer, setStats}) {
     })
     navigate('players')
   }
+  
+  // When I want to make a fetch that grabs more than 100 players
+
   // while (info.meta.total_pages >== 0) {
   //  const total = []
   //   fetch(`https://www.balldontlie.io/api/v1/players?search=${search}&per_page=100`)
@@ -26,8 +29,8 @@ function NavBar({search, setSearch, setPlayer, setStats}) {
   //  .then(info => setPlayer(info))
   // }
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
+    <Navbar bg="light" expand="lg" id='box' >
+      <Container >
         <Navbar.Brand component={Link} to='/' href="/">Home</Navbar.Brand>
         <Form className="d-flex" onSubmit={handleSubmit}>
             <Form.Control
@@ -40,7 +43,7 @@ function NavBar({search, setSearch, setPlayer, setStats}) {
             />
             <Button variant="outline-success" onClick={handleSubmit}>Search</Button>
           </Form>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link component={Link} to='/' href="/">Home</Nav.Link>
@@ -57,7 +60,7 @@ function NavBar({search, setSearch, setPlayer, setStats}) {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-        </Navbar.Collapse>
+        </Navbar.Collapse> */}
       </Container>
     </Navbar>
   )

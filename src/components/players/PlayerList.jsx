@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Accordion from 'react-bootstrap/Accordion';
 import PlayerPage from './PlayerPage';
+import { Link } from 'react-router-dom';
 
 function PlayerList({players}) {
     const [stats, setStats] = useState({})
@@ -13,23 +14,27 @@ function PlayerList({players}) {
     }
     
     return (
-        
-        <Accordion>
-        {players ? players.map((player, index) => (
-            <Accordion.Item eventKey={`${index}`} key={player.id} onClick={() => handleClick(player.id)}>
-              <Accordion.Header>{player.first_name + " " + player.last_name}</Accordion.Header>
-              <Accordion.Body>
-                {<PlayerPage player={player} stats={stats} />}
-              </Accordion.Body>
-            </Accordion.Item> 
+        <Accordion >
+            {players ? players.map((player, index) => (
+                <Accordion.Item 
+                button component={Link} to={`${player.id}`}
+                eventKey={`${index}`} 
+                key={player.id} 
+                onClick={() => handleClick(player.id)}
+                >
+                    <Accordion.Header>
+                        {player.first_name + " " + player.last_name}
+                        </Accordion.Header>
+                    <Accordion.Body>
+                        {stats ? <PlayerPage player={player} stats={stats} /> : <PlayerPage player={player} /> }
+                    </Accordion.Body>
+                </Accordion.Item> 
 
-        ))
-        : <h1>Loading... </h1>}
+            ))
+            : <h1>Loading... </h1>}
         
-          </Accordion>
-        
+        </Accordion>
+        );
+      }
       
-  );
-}
-
-export default PlayerList;
+      export default PlayerList;
